@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.27.1)
 
 project(
     nil-cmake
-    VERSION 0.0.1
+    VERSION 0.0.3
     DESCRIPTION "collection of utility functionalities"
 )
 
@@ -21,5 +21,6 @@ install(
         cmake/quality.cmake
         cmake/test.cmake
         cmake/cpack.cmake
+        cmake/pypi.cmake
     DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${CMAKE_PROJECT_NAME}
 )
