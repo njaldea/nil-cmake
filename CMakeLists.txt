@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.27.1)
 
 project(
     nil-cmake
-    VERSION 0.0.3
+    VERSION 0.0.4
     DESCRIPTION "collection of utility functionalities"
 )
 

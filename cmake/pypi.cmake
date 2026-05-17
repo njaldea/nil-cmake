@@ -20,9 +20,9 @@ function(setup_pypi CONFIG)
         ffi-python-stage
         COMMAND ${CMAKE_COMMAND} -E rm -rf "${PYPI_STAGE_DIR}"
         COMMAND ${CMAKE_COMMAND} -E make_directory "${PYPI_STAGE_DIR}"
-        COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_SOURCE_DIR}/src/ffi/python/README.md" "${PYPI_STAGE_DIR}/README.md"
+        COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_CURRENT_SOURCE_DIR}/README.md" "${PYPI_STAGE_DIR}/README.md"
         COMMAND ${CMAKE_COMMAND} -E copy "${PYPI_PYPROJECT_OUTPUT}" "${PYPI_STAGE_DIR}/pyproject.toml"
-        COMMAND ${CMAKE_COMMAND} -E copy_directory "${CMAKE_CURRENT_SOURCE_DIR}/ffi/python/${PYPI_MODULE_NAME}" "${PYPI_STAGE_DIR}/${PYPI_MODULE_NAME}"
+        COMMAND ${CMAKE_COMMAND} -E copy_directory "${CMAKE_CURRENT_SOURCE_DIR}/${PYPI_MODULE_NAME}" "${PYPI_STAGE_DIR}/${PYPI_MODULE_NAME}"
         COMMAND ${CMAKE_COMMAND} -E copy "$<TARGET_FILE:${TARGET}-c-api>" "${PYPI_STAGE_DIR}/${PYPI_MODULE_NAME}/$<TARGET_FILE_NAME:${TARGET}-c-api>"
         COMMAND ${CMAKE_COMMAND} -E chdir "${PYPI_STAGE_DIR}" "${PYPI_PYTHON_BIN}" -m build --wheel
         COMMAND ${CMAKE_COMMAND} -E chdir "${PYPI_STAGE_DIR}" /bin/bash -lc "${PYPI_AUDITWHEEL_BIN} repair dist/*.whl --wheel-dir dist/"
