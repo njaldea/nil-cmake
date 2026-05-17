@@ -12,7 +12,6 @@ function(setup_pypi CONFIG)
 
     set(PY_FFI_MODULE_NAME "${PYPI_MODULE_NAME}")
     set(PY_FFI_PACKAGE_DATA "${PYPI_PACKAGE_DATA}")
-
     configure_file("${CONFIG}" "${PYPI_PYPROJECT_CONFIG}" @ONLY)
     file(GENERATE OUTPUT "${PYPI_PYPROJECT_OUTPUT}" INPUT "${PYPI_PYPROJECT_CONFIG}")
 
@@ -22,7 +21,7 @@ function(setup_pypi CONFIG)
         COMMAND ${CMAKE_COMMAND} -E make_directory "${PYPI_STAGE_DIR}"
         COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_CURRENT_SOURCE_DIR}/README.md" "${PYPI_STAGE_DIR}/README.md"
         COMMAND ${CMAKE_COMMAND} -E copy "${PYPI_PYPROJECT_OUTPUT}" "${PYPI_STAGE_DIR}/pyproject.toml"
-        COMMAND ${CMAKE_COMMAND} -E copy_directory "${CMAKE_CURRENT_SOURCE_DIR}/${PYPI_MODULE_NAME}" "${PYPI_STAGE_DIR}/${PYPI_MODULE_NAME}"
+        COMMAND ${CMAKE_COMMAND} -E env rsync -a --exclude "$<TARGET_FILE_NAME:${TARGET}-c-api>" "${CMAKE_CURRENT_SOURCE_DIR}/${PYPI_MODULE_NAME}/" "${PYPI_STAGE_DIR}/${PYPI_MODULE_NAME}/"
         COMMAND ${CMAKE_COMMAND} -E copy "$<TARGET_FILE:${TARGET}-c-api>" "${PYPI_STAGE_DIR}/${PYPI_MODULE_NAME}/$<TARGET_FILE_NAME:${TARGET}-c-api>"
         COMMAND ${CMAKE_COMMAND} -E chdir "${PYPI_STAGE_DIR}" "${PYPI_PYTHON_BIN}" -m build --wheel
         COMMAND ${CMAKE_COMMAND} -E chdir "${PYPI_STAGE_DIR}" /bin/bash -lc "${PYPI_AUDITWHEEL_BIN} repair dist/*.whl --wheel-dir dist/"
