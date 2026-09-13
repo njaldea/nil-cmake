@@ -1,3 +1,6 @@
+# Copyright (c) 2026, Neil Aldea <njaldea@gmail.com>
+# SPDX-License-Identifier: BSL-1.0
+
 set(CPACK_PACKAGE_NAME "${CMAKE_PROJECT_NAME}-dev")
 set(CPACK_PACKAGE_CONTACT "njaldea@gmail.com")
 set(CPACK_DEBIAN_PACKAGE_MAINTAINER "Neil Aldea <njaldea@gmail.com>")

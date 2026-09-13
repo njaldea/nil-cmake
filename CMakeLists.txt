@@ -1,8 +1,11 @@
+# Copyright (c) 2026, Neil Aldea <njaldea@gmail.com>
+# SPDX-License-Identifier: BSL-1.0
+
 cmake_minimum_required(VERSION 3.27.1)
 
 project(
     nil-cmake
-    VERSION 0.0.5
+    VERSION 0.0.6
     DESCRIPTION "collection of utility functionalities"
 )
 

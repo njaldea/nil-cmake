@@ -1,3 +1,6 @@
+# Copyright (c) 2026, Neil Aldea <njaldea@gmail.com>
+# SPDX-License-Identifier: BSL-1.0
+
 function(setup_pypi CONFIG)
     string(REPLACE "-" "_" PYPI_MODULE_NAME "${CMAKE_PROJECT_NAME}")
     string(SUBSTRING "${CMAKE_PROJECT_NAME}" 4 -1 TARGET)

@@ -1,3 +1,6 @@
+# Copyright (c) 2026, Neil Aldea <njaldea@gmail.com>
+# SPDX-License-Identifier: BSL-1.0
+
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
@@ -11,7 +14,9 @@ set(BUILD_SHARED_LIBS OFF CACHE BOOL "[0 | OFF - 1 | ON]: Build using shared lib
 
 if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU" OR CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
     add_compile_options($<$<COMPILE_LANGUAGE:CXX>:-fno-rtti>)
-    add_compile_options($<$<COMPILE_LANGUAGE:CXX>:-flto>)
+    # =auto lets the LTO backend partition/parallelize LTRANS across available cores;
+    # plain -flto forwarded to the link step falls back to serial LTRANS regardless of -j.
+    add_compile_options($<$<COMPILE_LANGUAGE:CXX>:-flto=auto>)
     add_compile_options(-Wfatal-errors)
     add_compile_options(-Wshadow)
     add_compile_options(-Werror)

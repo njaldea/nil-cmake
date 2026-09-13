@@ -1,3 +1,6 @@
+# Copyright (c) 2026, Neil Aldea <njaldea@gmail.com>
+# SPDX-License-Identifier: BSL-1.0
+
 find_program(CLANG_FORMAT_EXECUTABLE NAMES clang-format-18)
 file(
     GLOB_RECURSE ALL_SOURCE_FILES
